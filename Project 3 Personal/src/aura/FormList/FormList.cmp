@@ -1,0 +1,12 @@
+<aura:component implements="force:appHostable" controller="FormListApexController">    
+    <!-- Attributes -->
+    <aura:attribute name="contactId" type="Id" />
+    <aura:attribute name="forms" type="Form__c[]" />
+    
+    <!-- Handlers -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:iteration items="{!v.forms}" var="form">
+        <c:FormListItem formId="{!form.Id}" />
+        <br/>
+    </aura:iteration>
+</aura:component>

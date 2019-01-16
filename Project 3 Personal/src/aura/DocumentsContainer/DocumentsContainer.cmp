@@ -1,0 +1,13 @@
+<aura:component implements="force:appHostable,forceCommunity:availableForAllPageTypes" access="global" >
+    <!-- Attributes -->
+    <aura:attribute name="currentFormId" type="Id" />
+    <aura:attribute name="contactId" type="Id" default="0031U000006SqW9QAK"/>
+    
+    <!-- Handlers -->
+    <aura:handler name="formClick" event="c:FormClick" action="{!c.handleFormClick}"/>
+
+    <c:FormList contactId="{!v.contactId}"/>
+    
+    <p>Current Form Id: {!v.currentFormId}</p>
+    
+</aura:component>

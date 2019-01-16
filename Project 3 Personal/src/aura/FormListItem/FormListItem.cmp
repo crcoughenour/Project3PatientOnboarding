@@ -1,0 +1,10 @@
+<aura:component >
+    <aura:attribute name="formId" type="ID" />
+    <aura:registerEvent name="formClick" type="c:FormClick" />
+    
+    <div onclick="{!c.clickForm}">
+        <lightning:recordViewForm recordId="{!v.formId}" objectApiName="Form__c">
+            <lightning:outputField fieldName="Name"/>
+        </lightning:recordViewForm>
+    </div>
+</aura:component>
