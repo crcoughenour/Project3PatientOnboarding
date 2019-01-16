@@ -1,0 +1,13 @@
+<aura:component >
+    <aura:attribute name="form" type="Form__c" />
+    <aura:registerEvent name="formClick" type="c:FormClick" />
+    
+    <div onclick="{!c.clickForm}">
+        <lightning:verticalNavigationItemIcon
+                                              label="{!v.form.Name}"
+                                              name="{!v.form.Name}"
+                                              iconName="standard:lead_list" />
+    </div>
+    
+    
+</aura:component>

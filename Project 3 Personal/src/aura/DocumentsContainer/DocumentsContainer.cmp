@@ -1,0 +1,24 @@
+<aura:component implements="force:appHostable,forceCommunity:availableForAllPageTypes" access="global" >
+    <!-- Attributes -->
+    <aura:attribute name="currentFormId" type="Id" />
+    <aura:attribute name="currentFormRecordTypeId" type="Id" />
+    <aura:attribute name="contactId" type="Id" default="0031U000006SqW9QAK"/>
+    
+    <!-- Handlers -->
+    <aura:handler name="formClick" event="c:FormClick" action="{!c.handleFormClick}"/>
+    
+    <!-- Div to split sections -->
+    <div class="slds-grid slds-gutters" style="height: 100vh !important;">
+        <div class="slds-col slds-size_1-of-4" style="height: 100vh !important;">
+            <c:FormList contactId="{!v.contactId}"/>
+        </div>
+        <aura:if isTrue="{!v.currentFormId == 'a001U000002t0cBQAQ'}" >
+            <div class="slds-col slds-size_3-of-4">
+                <!-- Main Form Element Goes Here -->
+                <c:NewPatientRegistrationForm myRecordId="{!''+v.currentFormId}" myRecordTypeId="{!''+v.myRecordTypeId}" />
+            </div>
+        </aura:if>
+    </div>
+    
+    
+</aura:component>
