@@ -1,0 +1,13 @@
+<aura:component >
+   	<aura:attribute name="contactId" type="ID" default="0031U0000068L7E"/>
+    <aura:attribute name="formId" type="ID" default="a001U000002U2FiQAK"/>
+    
+	<!-- Handlers -->
+    <aura:handler name="formClick" event="c:FormClick" action="{!c.handleFormClick}"/>
+
+    
+    <ui:outputText value="{!v.formId}"/>
+    <br />
+    <c:showForm contactId="{!v.contactId}" formId="{!v.formId}"/>
+    
+</aura:component>

@@ -1,0 +1,33 @@
+<aura:component implements="flexipage:availableForRecordHome">
+	<aura:attribute name="formId" type="ID"/>
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="simpleRecord" type="Object"/>
+    <aura:attribute name="recordError" type="String"/>
+    
+	<p><lightning:formattedText title="a" value="{!'formId from inside component: ' + v.formId}" /></p>
+    <force:recordData aura:id="recordHandler" 
+                      recordId="{!v.formId}"
+                      layoutType="FULL"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.simpleRecord}"
+                      targetError="{!v.recordError}"
+                      mode="EDIT"
+
+                      />
+    
+    
+    <lightning:card iconName="standard:account" title="{!v.simpleRecord.Name}" >
+        
+        
+		
+        <p><lightning:input label="Name" value="{!v.simpleRecord.PatientSignatureName__c}" /></p>
+		<p><lightning:input value="{!v.simpleRecord.State__c}" /></p>
+    </lightning:card>
+	
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+        <div class="recordError">
+            {!v.recordError}</div>
+    </aura:if>
+
+    
+</aura:component>

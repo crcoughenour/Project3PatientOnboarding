@@ -1,0 +1,71 @@
+<aura:component controller="showFormApexController">
+    <!-- Attributes from parent-->
+    <!-- default="0031U0000068L7E"-->
+    <aura:attribute name="contactId" type="ID" />
+    <aura:attribute name="formId" type="ID"/>
+    
+    <!-- Attributes-->
+    <aura:attribute name="formList" type="Form__c[]" /> 
+    <aura:attribute name="newPatientRegistrationForm" type="Form__c" /> 
+    <aura:attribute name="medicalHistoryForm" type="Form__c" />
+    <aura:attribute name="consentForTreatmentForm" type="Form__c" />
+    <aura:attribute name="consentForTreatmentFormId" type="ID"/>
+    
+    
+    <aura:attribute name="showNewPatientRegistrationForm" type="Boolean" default="true"/>
+    <aura:attribute name="showMedicalHistoryForm" type="Boolean" default="false"/>
+    <aura:attribute name="showConsentForTreatmentForm" type="Boolean" default="false"/>
+    
+    <aura:attribute name="showPreviousButton" type="Boolean" default="false"/>
+    <aura:attribute name="showNextButton" type="Boolean" default="true"/>
+    
+    
+    
+    aaa -- <ui:outputText value="{!v.formId}"/>
+    <br />
+    
+    <!-- Handlers -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.formId}" action="{!c.handleFormIdChange}"/>
+    
+    <aura:registerEvent name="formClick" type="c:FormClick" />
+    
+    
+    
+    <!--br />
+    <aura:iteration items="{!v.formList}" var="form">     
+        <ui:outputText value="{!form.Id}"/>
+        <br />
+    </aura:iteration>
+    <br/-->
+    
+    
+    <aura:renderIf isTrue="{!v.showNewPatientRegistrationForm}">
+        
+        Hi this is supposed to be the new patient registration form
+        <ui:outputText value="{!v.consentForTreatmentForm.Name}"/>
+       
+    </aura:renderIf>
+
+    <aura:renderIf isTrue="{!v.showMedicalHistoryForm}">
+        Hi this is supposed to be the show medical history form
+        <ui:outputText value="{!v.medicalHistoryForm.OtherHistoryItem__c}"/>
+    </aura:renderIf><br/>
+    
+    
+    
+    <aura:renderIf isTrue="{!v.showConsentForTreatmentForm}">
+        <ui:outputText value="{!'formId from container:' + v.consentForTreatmentForm.Id}"/>
+        <br/>
+        <ui:outputText value="{!'formId from hard code: a001U000002U2FOQA0'}"/>
+        <br/>
+        <ui:outputText value="{!'formId from a new attribute:' + v.consentForTreatmentFormId}"/>
+        <c:consentForTreatmentForm formId="{!''+v.consentForTreatmentFormId}"/>
+        <c:consentForTreatmentForm formId="{!'a001U000002U2FOQA0'}"/>
+    </aura:renderIf><br/>
+    
+    
+     <lightning:button label="Previous" title="Neutral action" onclick="{! c.previousClick }" disabled="{! !(v.showPreviousButton)}"/>
+     <lightning:button label="Next" title="Neutral action" onclick="{! c.nextClick }" disabled="{! !(v.showNextButton)}"/>
+    
+</aura:component>
