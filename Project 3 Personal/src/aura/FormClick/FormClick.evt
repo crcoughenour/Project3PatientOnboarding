@@ -1,3 +1,4 @@
 <aura:event type="COMPONENT" description="Event template">
     <aura:attribute name="clickedFormId" type="ID" />
+    <aura:attribute name="clickedFormRecordTypeId" type="ID" />
 </aura:event>

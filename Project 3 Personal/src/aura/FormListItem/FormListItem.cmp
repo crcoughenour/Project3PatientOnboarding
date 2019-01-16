@@ -1,10 +1,13 @@
 <aura:component >
-    <aura:attribute name="formId" type="ID" />
+    <aura:attribute name="form" type="Form__c" />
     <aura:registerEvent name="formClick" type="c:FormClick" />
     
     <div onclick="{!c.clickForm}">
-        <lightning:recordViewForm recordId="{!v.formId}" objectApiName="Form__c">
-            <lightning:outputField fieldName="Name"/>
-        </lightning:recordViewForm>
+        <lightning:verticalNavigationItemIcon
+                                              label="{!v.form.Name}"
+                                              name="{!v.form.Name}"
+                                              iconName="standard:lead_list" />
     </div>
+    
+    
 </aura:component>

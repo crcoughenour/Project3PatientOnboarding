@@ -5,8 +5,14 @@
     
     <!-- Handlers -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-    <aura:iteration items="{!v.forms}" var="form">
-        <c:FormListItem formId="{!form.Id}" />
-        <br/>
-    </aura:iteration>
+
+    <div class="slds-align_absolute-center">
+        <lightning:verticalNavigation>
+            <lightning:verticalNavigationSection label="Forms">
+                <aura:iteration items="{!v.forms}" var="form">
+                    <c:FormListItem form="{!form}" />
+                </aura:iteration>
+            </lightning:verticalNavigationSection>
+        </lightning:verticalNavigation>
+    </div>
 </aura:component>
