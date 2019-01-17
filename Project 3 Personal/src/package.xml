@@ -3,19 +3,29 @@
     <types>
         <members>ContactTriggerHelper</members>
         <members>FormListApexController</members>
+        <members>MsPicklistComponentApexController</members>
+        <members>PicklistComponentApexController</members>
+        <members>showFormApexController</members>
+        <members>DocumentsContainerApexController</members>
         <name>ApexClass</name>
-    </types>
-    <types>
-        <members>DocumentsContainer</members>
-        <members>FormClick</members>
-        <members>FormList</members>
-        <members>FormListItem</members>
-        <members>TestApp</members>
-        <name>AuraDefinitionBundle</name>
     </types>
     <types>
         <members>*</members>
         <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>consentForTreatmentForm</members>
+        <members>DocumentsContainer</members>
+        <members>FormClick</members>
+        <members>FormList</members>
+        <members>FormListItem</members>
+        <members>MedicalHistoryForm</members>
+        <members>MsPicklistComponent</members>
+        <members>NewPatientRegistrationForm</members>
+        <members>PicklistComponent</members>
+        <members>showForm</members>
+        <members>TestApp</members>
+        <name>AuraDefinitionBundle</name>
     </types>
     <version>38.0</version>
 </Package>

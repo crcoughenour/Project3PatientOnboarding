@@ -1,0 +1,120 @@
+<aura:component >
+    <aura:attribute name="myRecordId" type="Id"/>
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="simpleRecord" type="Object"/>
+    <aura:attribute name="recordError" type="String"/>
+    
+    <!-- Picklist Values -->
+    <aura:attribute name="medicalHistoryPicklistValues" type="List" default="[]"/>
+    <aura:attribute name="selectedMedicalHistoryPicklistValues" type="List" default="[]"/>
+    <aura:attribute name="boneFracturePicklistValues" type="List" default="[]"/>
+    <aura:attribute name="exerciseActivityPicklistValues" type="List" default="[]"/>
+    <aura:attribute name="tobaccoUsePicklistValues" type="List" default="[]"/>
+    <aura:attribute name="alcoholUsePicklistValues" type="List" default="[]"/>
+    <aura:attribute name="caffeineUsePicklistValues" type="List" default="[]"/>
+    <aura:attribute name="medicationQuestionPicklistValues" type="List" default="[]"/>
+    <aura:attribute name="allergiesQuestionPicklistValues" type="List" default="[]"/>
+    <aura:attribute name="surgeryQuestionPicklistValues" type="List" default="[]"/>
+    <aura:attribute name="surgeriesPicklistValues" type="List" default="[]"/>
+    <aura:attribute name="FamilyHistoryPicklistValues" type="List" default="[]"/>
+    
+    
+    <force:recordData aura:id="recordLoader"
+                      recordId="{!v.myRecordId}"
+                      layoutType="FULL"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.simpleRecord}"
+                      targetError="{!v.recordError}"
+                      mode="EDIT"
+                      />
+    
+    <c:MsPicklistComponent sObjectName="Form__c" field="MedicalHistory__c" msPicklistOptions="{!v.medicalHistoryPicklistValues}" />
+    <c:PicklistComponent sObjectName="Form__c" field="BoneFracturesQuestion__c" picklistValues="{!v.boneFracturePicklistValues}" />
+    <c:PicklistComponent sObjectName="Form__c" field="ExerciseActivity__c" picklistValues="{!v.exerciseActivityPicklistValues}" />
+    <c:PicklistComponent sObjectName="Form__c" field="TobaccoUse__c" picklistValues="{!v.tobaccoUsePicklistValues}" />
+    <c:PicklistComponent sObjectName="Form__c" field="AlcoholUse__c" picklistValues="{!v.alcoholUsePicklistValues}" />
+    <c:PicklistComponent sObjectName="Form__c" field="CaffeineUse__c" picklistValues="{!v.caffeineUsePicklistValues}" />
+    <c:PicklistComponent sObjectName="Form__c" field="MedicationQuestion__c" picklistValues="{!v.medicationQuestionPicklistValues}" />
+    <c:PicklistComponent sObjectName="Form__c" field="AllergiesQuestion__c" picklistValues="{!v.allergiesQuestionPicklistValues}" />
+    <c:PicklistComponent sObjectName="Form__c" field="SurgeryQuestion__c" picklistValues="{!v.surgeryQuestionPicklistValues}" />
+    <c:MsPicklistComponent sObjectName="Form__c" field="SurgicalHistory__c" msPicklistOptions="{!v.surgeriesPicklistValues}" />
+    <c:MsPicklistComponent sObjectName="Form__c" field="FamilyHistory__c" msPicklistOptions="{!v.FamilyHistoryPicklistValues}" />
+    
+    <lightning:card iconName="standard:lead_list" title="Medical History" >
+        
+        <lightning:dualListbox name="Medical Conditions"  
+                               label= "Select Medical Conditions" 
+                               sourceLabel="Available" 
+                               selectedLabel="Selected" 
+                               fieldLevelHelp="Select the Medical Conditions that apply to you" 
+                               options="{!v.medicalHistoryPicklistValues}" /> 
+        
+        <lightning:input type="Text" label="Other Medical History" value="{!v.simpleRecord.OtherHistoryItem__c}" />
+        <lightning:select name="select" label="Any bone fractures?" required="true" value="{!v.simpleRecord.BoneFracturesQuestion__c}">
+            <aura:iteration items="{!v.boneFracturePicklistValues}" var="bf">
+                <option text="{!bf}"></option>
+            </aura:iteration>
+        </lightning:select>
+        <lightning:select name="select" label="Exercise Activity" required="true" value="{!v.simpleRecord.ExerciseActivity__c}">
+            <aura:iteration items="{!v.exerciseActivityPicklistValues}" var="ea">
+                <option text="{!ea}"></option>
+            </aura:iteration>
+        </lightning:select>
+        <lightning:select name="select" label="Exercise Activity" required="true" value="{!v.simpleRecord.ExerciseActivity__c}">
+            <aura:iteration items="{!v.exerciseActivityPicklistValues}" var="ea">
+                <option text="{!ea}"></option>
+            </aura:iteration>
+        </lightning:select>
+        <lightning:input type="Number" label="Exercise days/week" value="{!v.simpleRecord.ExerciseDaysPerWeek__c}" />
+        <lightning:select name="select" label="Tobacco Use" required="true" value="{!v.simpleRecord.TobaccoUse__c}">
+            <aura:iteration items="{!v.tobaccoUsePicklistValues}" var="tu">
+                <option text="{!tu}"></option>
+            </aura:iteration>
+        </lightning:select>
+        <lightning:select name="select" label="Alcohol Use" required="true" value="{!v.simpleRecord.AlcoholUse__c}">
+            <aura:iteration items="{!v.alcoholUsePicklistValues}" var="au">
+                <option text="{!au}"></option>
+            </aura:iteration>
+        </lightning:select>
+        <lightning:select name="select" label="Caffeine Use" required="true" value="{!v.simpleRecord.CaffeineUse__c}">
+            <aura:iteration items="{!v.caffeineUsePicklistValues}" var="au">
+                <option text="{!au}"></option>
+            </aura:iteration>
+        </lightning:select>
+        <lightning:select name="select" label="Are you currently taking supplements or prescription medication?" required="true" value="{!v.simpleRecord.MedicationQuestion__c}">
+            <aura:iteration items="{!v.medicationQuestionPicklistValues}" var="mq">
+                <option text="{!mq}"></option>
+            </aura:iteration>
+        </lightning:select>
+        <lightning:select name="select" label="Do you suffer from any known allergies?" required="true" value="{!v.simpleRecord.AllergiesQuestion__c}">
+            <aura:iteration items="{!v.allergiesQuestionPicklistValues}" var="aq">
+                <option text="{!aq}"></option>
+            </aura:iteration>
+        </lightning:select>
+        <lightning:input type="Text" label="Other illnesses otherwise not listed." value="{!v.simpleRecord.OtherIllnesses__c}" />
+        <lightning:select name="select" label="Have you had any surgeries in the past 5 years?" required="true" value="{!v.simpleRecord.SurgeryQuestion__c}">
+            <aura:iteration items="{!v.allergiesQuestionPicklistValues}" var="aq">
+                <option text="{!aq}"></option>
+            </aura:iteration>
+        </lightning:select>
+        <lightning:dualListbox name="Previous Surgical History"  
+                               label= "Previous Surgical History" 
+                               sourceLabel="Available" 
+                               selectedLabel="Selected" 
+                               fieldLevelHelp="Select previous surgeries you have undertaken" 
+                               options="{!v.surgeriesPicklistValues}" /> 
+        
+        <lightning:input type="Text" label="Other Surgeries" value="{!v.simpleRecord.OtherSurgeryItem__c}" />
+        <lightning:dualListbox name="Family History"  
+                               label= "Select Medical Conditions" 
+                               sourceLabel="Available" 
+                               selectedLabel="Selected" 
+                               fieldLevelHelp="Select the Medical Conditions that apply to you" 
+                               options="{!v.FamilyHistoryPicklistValues}" /> 
+        
+        <lightning:input type="Text" label="Other Family History" value="{!v.simpleRecord.OtherFamilyHistoryItem__c}" />
+        
+    </lightning:card>
+    
+    
+</aura:component>
