@@ -23,5 +23,5 @@
             component.set("v.msPicklistOptions", options);
         })
         $A.enqueueAction(action);
-    }
+    },
 })

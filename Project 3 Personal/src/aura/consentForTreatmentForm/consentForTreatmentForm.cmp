@@ -1,27 +1,42 @@
-<aura:component implements="flexipage:availableForRecordHome">
-	<aura:attribute name="formId" type="ID"/>
+<aura:component >
+    <aura:attribute name="actualRecord" type="Form__c"/>
+	<aura:attribute name="recordId" type="Id"/>
     <aura:attribute name="record" type="Object"/>
     <aura:attribute name="simpleRecord" type="Object"/>
     <aura:attribute name="recordError" type="String"/>
     
-	<p><lightning:formattedText title="a" value="{!'formId from inside component: ' + v.formId}" /></p>
-    <force:recordData aura:id="recordHandler" 
-                      recordId="{!v.formId}"
-                      layoutType="FULL"
-                      targetRecord="{!v.record}"
-                      targetFields="{!v.simpleRecord}"
-                      targetError="{!v.recordError}"
-                      mode="EDIT"
-
-                      />
+	<p><lightning:formattedText title="a" value="{!'formId from inside component: ' + v.recordId}" /></p>
+    <p><lightning:formattedText title="a" value="{!'formId from inside component: ' + v.actualRecord.Id}" /></p>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!v.recordId}" action="{!c.handleRecordIdChange}"/>
     
     
-    <lightning:card iconName="standard:account" title="{!v.simpleRecord.Name}" >
+    <aura:if isTrue="{!v.recordId == v.actualRecord.Id}">
+        <force:recordData aura:id="forceRecordCmp"
+                          recordId="{!v.recordId}"
+                          layoutType="FULL"
+                          mode="EDIT"
+                          targetRecord="{!v.record}"
+                          targetFields="{!v.simpleRecord}"
+                          targetError="{!v.recordError}" />
+    </aura:if>
+   
+    
+    
+    <lightning:card iconName="standard:account" title="Conset for Treatment Form" >
         
+        <lightning:input label="Witness Job Title" value="{!v.simpleRecord.WitnessJobTitle__c}" />
+        <lightning:input label="Relationship to Parent" value="{!v.simpleRecord.RelationshipToPatient__c}" />
         
-		
-        <p><lightning:input label="Name" value="{!v.simpleRecord.PatientSignatureName__c}" /></p>
+        <lightning:input label="Patient Signature Name" value="{!v.simpleRecord.PatientSignatureName__c}" />
+        <lightning:input label="Patient Signature NDate" value="{!v.simpleRecord.DatePS__c}" />
+        
+        <lightning:input label="Witness Signature Name" value="{!v.simpleRecord.WitnessSignatureName__c}" />
+        <lightning:input label="Witness Signature Date" value="{!v.simpleRecord.DateWS__c}" />
     </lightning:card>
+    		
+	
 	
     <aura:if isTrue="{!not(empty(v.recordError))}">
         <div class="recordError">

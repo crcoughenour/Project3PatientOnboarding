@@ -3,7 +3,7 @@ public class DocumentsContainerApexController {
     @AuraEnabled
     public static List<Form__c> getContactsForms(ID contactId) {
         List<Form__c> unorderedList = [SELECT
-                                      		 Name, Id, RecordTypeId
+                                      		 Name, Id, RecordTypeId, FirstName__c, PatientSignatureName__c
                                        FROM 
                                       		 Form__c
                                        WHERE Contact__c = :contactId];

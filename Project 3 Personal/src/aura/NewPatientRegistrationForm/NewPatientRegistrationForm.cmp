@@ -3,6 +3,7 @@
     <aura:attribute name="record" type="Object"/>
     <aura:attribute name="simpleRecord" type="Object"/>
     <aura:attribute name="recordError" type="String"/>
+    <aura:attribute name="actualRecord" type="Form__c"/>
     
     <!-- Picklist Values -->
     <aura:attribute name="statePicklistValues" type="List" default="[]"/>
@@ -10,14 +11,17 @@
     <aura:attribute name="maritalStatusPicklistValues" type="List" default="[]"/>
     <aura:attribute name="employmentStatusPicklistValues" type="List" default="[]"/>
     
-    <force:recordData aura:id="recordLoader"
-                      recordId="{!v.myRecordId}"
-                      layoutType="FULL"
-                      targetRecord="{!v.record}"
-                      targetFields="{!v.simpleRecord}"
-                      targetError="{!v.recordError}"
-                      mode="EDIT"
-                      />
+    <aura:if isTrue="{!v.myRecordId == v.actualRecord.Id}">
+        <force:recordData aura:id="recordLoader"
+                          recordId="{!v.myRecordId}"
+                          layoutType="FULL"
+                          targetRecord="{!v.record}"
+                          targetFields="{!v.simpleRecord}"
+                          targetError="{!v.recordError}"
+                          mode="EDIT"
+                          />
+     </aura:if>
+    
     
     <c:PicklistComponent sObjectName="Form__c" field="State__c" picklistValues="{!v.statePicklistValues}" />
     <c:PicklistComponent sObjectName="Form__c" field="PreferredMethodOfContact__c" picklistValues="{!v.pmocPicklistValues}" />
@@ -81,5 +85,8 @@
         <lightning:input type="Text" label="Relationship to Patient" value="{!v.simpleRecord.City__c}" />
     </lightning:card>
     
-    
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+        <div class="recordError">
+            {!v.recordError}</div>
+    </aura:if>
 </aura:component>

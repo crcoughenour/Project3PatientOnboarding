@@ -37,24 +37,20 @@
     
     
     <aura:renderIf isTrue="{!v.showNewPatientRegistrationForm}">
-        <c:NewPatientRegistrationForm myRecordId="{!''+v.formId}" />
+        <c:NewPatientRegistrationForm myRecordId="{!''+v.newPatientRegistrationForm.Id}" actualRecord="{!v.newPatientRegistrationForm}"/>
     </aura:renderIf>
 
     <aura:renderIf isTrue="{!v.showMedicalHistoryForm}">
-        <c:MedicalHistoryForm myRecordId="{!''+v.formId}" />
-    </aura:renderIf><br/>
+        <c:MedicalHistoryForm myRecordId="{!''+v.medicalHistoryForm.Id}" actualRecord="{!v.medicalHistoryForm}"/>
+    </aura:renderIf>
     
     <aura:renderIf isTrue="{!v.showConsentForTreatmentForm}">
-        <ui:outputText value="{!'formId from container:' + v.consentForTreatmentForm.Id}"/>
-        <br/>
-        <ui:outputText value="{!'formId from hard code: a001U000002U2FOQA0'}"/>
-        <br/>
-        <ui:outputText value="{!'formId from a new attribute:' + v.consentForTreatmentFormId}"/>
-        <c:consentForTreatmentForm formId="{!''+v.consentForTreatmentFormId}"/>
+        <c:consentForTreatmentForm recordId="{!''+v.consentForTreatmentForm.Id}" actualRecord="{!v.consentForTreatmentForm}"/>
     </aura:renderIf><br/>
     
     
-     <lightning:button label="Previous" title="Neutral action" onclick="{! c.previousClick }" disabled="{! !(v.showPreviousButton)}"/>
-     <lightning:button label="Next" title="Neutral action" onclick="{! c.nextClick }" disabled="{! !(v.showNextButton)}"/>
+    <lightning:button label="Previous" title="Neutral action" onclick="{! c.previousClick }" disabled="{! !(v.showPreviousButton)}"/>
+	<lightning:button label="Save" title="Neutral action" onclick="{! c.saveClick }"/>
+    <lightning:button label="Next" title="Neutral action" onclick="{! c.nextClick }" disabled="{! !(v.showNextButton)}"/>
     
 </aura:component>

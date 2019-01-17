@@ -1,12 +1,12 @@
 <aura:component >
+    <aura:attribute name="actualRecord" type="Form__c"/>
     <aura:attribute name="myRecordId" type="Id"/>
     <aura:attribute name="record" type="Object"/>
     <aura:attribute name="simpleRecord" type="Object"/>
     <aura:attribute name="recordError" type="String"/>
     
     <!-- Picklist Values -->
-    <aura:attribute name="medicalHistoryPicklistValues" type="List" default="[]"/>
-    <aura:attribute name="selectedMedicalHistoryPicklistValues" type="List" default="[]"/>
+
     <aura:attribute name="boneFracturePicklistValues" type="List" default="[]"/>
     <aura:attribute name="exerciseActivityPicklistValues" type="List" default="[]"/>
     <aura:attribute name="tobaccoUsePicklistValues" type="List" default="[]"/>
@@ -15,18 +15,28 @@
     <aura:attribute name="medicationQuestionPicklistValues" type="List" default="[]"/>
     <aura:attribute name="allergiesQuestionPicklistValues" type="List" default="[]"/>
     <aura:attribute name="surgeryQuestionPicklistValues" type="List" default="[]"/>
+    
+    <!-- Multiselect Values -->
+    <aura:attribute name="medicalHistoryPicklistValues" type="List" default="[]"/>
+    <aura:attribute name="selectedMedicalHistoryPicklistValues" type="String[]"/>
+    
     <aura:attribute name="surgeriesPicklistValues" type="List" default="[]"/>
+    <aura:attribute name="selectedSurgeriesPicklistValues" type="List" default="[]"/>
+    
     <aura:attribute name="FamilyHistoryPicklistValues" type="List" default="[]"/>
+    <aura:attribute name="selectedFamilyHistoryPicklistValues" type="List" default="[]"/>
     
-    
-    <force:recordData aura:id="recordLoader"
-                      recordId="{!v.myRecordId}"
-                      layoutType="FULL"
-                      targetRecord="{!v.record}"
-                      targetFields="{!v.simpleRecord}"
-                      targetError="{!v.recordError}"
-                      mode="EDIT"
-                      />
+
+    <aura:if isTrue="{!v.myRecordId == v.actualRecord.Id}">
+        <force:recordData aura:id="recordLoader"
+                          recordId="{!v.myRecordId}"
+                          layoutType="FULL"
+                          targetRecord="{!v.record}"
+                          targetFields="{!v.simpleRecord}"
+                          targetError="{!v.recordError}"
+                          mode="EDIT"
+                          />
+    </aura:if>
     
     <c:MsPicklistComponent sObjectName="Form__c" field="MedicalHistory__c" msPicklistOptions="{!v.medicalHistoryPicklistValues}" />
     <c:PicklistComponent sObjectName="Form__c" field="BoneFracturesQuestion__c" picklistValues="{!v.boneFracturePicklistValues}" />
@@ -38,16 +48,20 @@
     <c:PicklistComponent sObjectName="Form__c" field="AllergiesQuestion__c" picklistValues="{!v.allergiesQuestionPicklistValues}" />
     <c:PicklistComponent sObjectName="Form__c" field="SurgeryQuestion__c" picklistValues="{!v.surgeryQuestionPicklistValues}" />
     <c:MsPicklistComponent sObjectName="Form__c" field="SurgicalHistory__c" msPicklistOptions="{!v.surgeriesPicklistValues}" />
-    <c:MsPicklistComponent sObjectName="Form__c" field="FamilyHistory__c" msPicklistOptions="{!v.FamilyHistoryPicklistValues}" />
+    <c:MsPicklistComponent sObjectName="Form__c" field="FamilyHistory__c" msPicklistOptions="{!v.FamilyHistoryPicklistValues}" />  
     
-    <lightning:card iconName="standard:lead_list" title="Medical History" >
+    SELECTED VALUES: {!v.selectedMedicalHistoryPicklistValues}
+    <lightning:card iconName="standard:lead_list" title="{!v.actualRecord.Name}" >
         
         <lightning:dualListbox name="Medical Conditions"  
                                label= "Select Medical Conditions" 
                                sourceLabel="Available" 
                                selectedLabel="Selected" 
                                fieldLevelHelp="Select the Medical Conditions that apply to you" 
-                               options="{!v.medicalHistoryPicklistValues}" /> 
+                               options="{!v.medicalHistoryPicklistValues}"
+                               values="{!v.selectedMedicalHistoryPicklistValues}"
+                               />
+
         
         <lightning:input type="Text" label="Other Medical History" value="{!v.simpleRecord.OtherHistoryItem__c}" />
         <lightning:select name="select" label="Any bone fractures?" required="true" value="{!v.simpleRecord.BoneFracturesQuestion__c}">
@@ -113,8 +127,11 @@
                                options="{!v.FamilyHistoryPicklistValues}" /> 
         
         <lightning:input type="Text" label="Other Family History" value="{!v.simpleRecord.OtherFamilyHistoryItem__c}" />
-        
     </lightning:card>
     
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+        <div class="recordError">
+            {!v.recordError}</div>
+    </aura:if>
     
 </aura:component>
