@@ -6,7 +6,6 @@
     
     handleFormIdChange : function(component, event, helper){
         //var recordId = component.get("v.recordId");
-        console.log("going to helper");
         helper.handleFormIdChange(component);
     },
     
@@ -20,8 +19,8 @@
                 "clickedFormId": formId
             });
             clickEvent.fire();
-            component.set("v.showNextButton", true);
-            component.set("v.showPreviousButton", true);
+            //component.set("v.showNextButton", true);
+            //component.set("v.showPreviousButton", true);
         }
             
         else if(component.get("v.medicalHistoryForm").Id === component.get("v.formId")){
@@ -31,8 +30,8 @@
                 "clickedFormId": formId
             });
             clickEvent.fire();
-            component.set("v.showNextButton", true);
-            component.set("v.showPreviousButton", false);
+            //component.set("v.showNextButton", true);
+            //component.set("v.showPreviousButton", false);
         }
         	
     },
@@ -47,14 +46,15 @@
             
             console.log("click first next id:" + component.get("v.medicalHistoryForm").Id);
             var formId = component.get("v.medicalHistoryForm").Id;
+            console.log("Medical History Id: " + formId);
     		var clickEvent = component.getEvent("formClick");
             
     		clickEvent.setParams({
                 "clickedFormId": formId
             });
             clickEvent.fire();
-            component.set("v.showNextButton", true);
-            component.set("v.showPreviousButton", true);
+            //component.set("v.showNextButton", true);
+            //component.set("v.showPreviousButton", true);
         }
             
         else if(component.get("v.medicalHistoryForm").Id === component.get("v.formId")){
@@ -64,10 +64,16 @@
                 "clickedFormId": formId
             });
             clickEvent.fire();
-            component.set("v.showNextButton", false);
-            component.set("v.showPreviousButton", true);
+            //component.set("v.showNextButton", false);
+            //component.set("v.showPreviousButton", true);
         }
          	
+    },
+    
+    
+    saveClick : function(component){
+        
+        
     }
    
     

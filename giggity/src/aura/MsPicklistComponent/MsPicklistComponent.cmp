@@ -1,0 +1,7 @@
+<aura:component controller="MsPicklistComponentApexController" access="global">
+    <aura:attribute name="sObjectName" type="String" />
+    <aura:attribute name="field" type="String" />
+    <aura:attribute name="msPicklistOptions" type="List" />
+    
+   <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+</aura:component>

@@ -1,0 +1,92 @@
+<aura:component >
+    <aura:attribute name="myRecordId" type="Id"/>
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="simpleRecord" type="Object"/>
+    <aura:attribute name="recordError" type="String"/>
+    <aura:attribute name="actualRecord" type="Form__c"/>
+    
+    <!-- Picklist Values -->
+    <aura:attribute name="statePicklistValues" type="List" default="[]"/>
+    <aura:attribute name="pmocPicklistValues" type="List" default="[]"/>
+    <aura:attribute name="maritalStatusPicklistValues" type="List" default="[]"/>
+    <aura:attribute name="employmentStatusPicklistValues" type="List" default="[]"/>
+    
+    <aura:if isTrue="{!v.myRecordId == v.actualRecord.Id}">
+        <force:recordData aura:id="recordLoader"
+                          recordId="{!v.myRecordId}"
+                          layoutType="FULL"
+                          targetRecord="{!v.record}"
+                          targetFields="{!v.simpleRecord}"
+                          targetError="{!v.recordError}"
+                          mode="EDIT"
+                          />
+     </aura:if>
+    
+    
+    <c:PicklistComponent sObjectName="Form__c" field="State__c" picklistValues="{!v.statePicklistValues}" />
+    <c:PicklistComponent sObjectName="Form__c" field="PreferredMethodOfContact__c" picklistValues="{!v.pmocPicklistValues}" />
+    <c:PicklistComponent sObjectName="Form__c" field="MaritalStatus__c" picklistValues="{!v.maritalStatusPicklistValues}" />
+    <c:PicklistComponent sObjectName="Form__c" field="Employment__c" picklistValues="{!v.employmentStatusPicklistValues}" />
+    
+    <lightning:card iconName="standard:lead_list" title="New Patient Registration Form" >
+        <lightning:input type="Text" label="First Name" value="{!v.simpleRecord.FirstName__c}" />
+        <lightning:input type="Text" label="Last Name" value="{!v.simpleRecord.LastName__c}" />
+        <lightning:input type="Text" label="Street Address" value="{!v.simpleRecord.StreetAddress__c}" />
+        <lightning:input type="Text" label="City" value="{!v.simpleRecord.City__c}" />
+        <lightning:select name="select" label="State" required="true" value="{!v.simpleRecord.State__c}">
+            <aura:iteration items="{!v.statePicklistValues}" var="state">
+                <option text="{!state}"></option>
+            </aura:iteration>
+        </lightning:select>
+        <lightning:input type="Text" label="Zip Code" value="{!v.simpleRecord.ZipCode__c}" />
+        <lightning:input type="Text" label="City" value="{!v.simpleRecord.City__c}" />
+        <lightning:input type="Date" label="Date of birth" value="{!v.simpleRecord.DateOfBirth__c}" />
+        <lightning:input type="Email" label="Email" value="{!v.simpleRecord.Email__c}" />
+        <lightning:input type="Tel" label="Home Phone" value="{!v.simpleRecord.HomePhone__c}" />
+        <lightning:input type="Tel" label="Cell Phone" value="{!v.simpleRecord.CellPhone__c}" />
+        <lightning:input type="Tel" label="Work Phone" value="{!v.simpleRecord.WorkPhone__c}" />
+        <lightning:select name="select" label="Preferred Method of Contact" required="true" value="{!v.simpleRecord.PreferredMethodOfContact__c}">
+            <aura:iteration items="{!v.pmocPicklistValues}" var="moc">
+                <option text="{!moc}"></option>
+            </aura:iteration>
+        </lightning:select>
+        <lightning:input type="Text" label="Driver's License Number" value="{!v.simpleRecord.DriverLicense__c}" />
+        <lightning:input type="Text" label="SSN" value="{!v.simpleRecord.SSN__c}" />
+        <lightning:select name="select" label="Marital Status" required="true" value="{!v.simpleRecord.MaritalStatus__c}">
+            <aura:iteration items="{!v.maritalStatusPicklistValues}" var="ms">
+                <option text="{!ms}"></option>
+            </aura:iteration>
+        </lightning:select>
+        <lightning:select name="select" label="Employment Status" required="true" value="{!v.simpleRecord.Employment__c}">
+            <aura:iteration items="{!v.employmentStatusPicklistValues}" var="es">
+                <option text="{!es}"></option>
+            </aura:iteration>
+        </lightning:select>
+        <lightning:input type="Text" label="Primary Care Provider" value="{!v.simpleRecord.PrimaryCareProvider__c}" />
+        <lightning:input type="Text" label="Referring Care Provider" value="{!v.simpleRecord.ReferringCareProvider__c}" />
+        <lightning:input type="Text" label="Preferred Pharmacy" value="{!v.simpleRecord.PreferredPharmacy__c}" />
+        <lightning:input type="Tel" label="Preferred Pharmacy Phone" value="{!v.simpleRecord.PreferredPharmacyPhone__c}" />
+        <br/>
+        EMERGENCY CONTACT
+        <br/>
+        <lightning:input type="Text" label="First Name" value="{!v.simpleRecord.EmergencyContactFirstName__c}" />
+        <lightning:input type="Text" label="Last Name" value="{!v.simpleRecord.EmergencyContactLastName__c}" />
+        <lightning:input type="Text" label="Street Address" value="{!v.simpleRecord.EmergencyContactStreetAddress__c}" />
+        <lightning:input type="Text" label="City" value="{!v.simpleRecord.EmergencyContactCity__c}" />
+        <lightning:input type="Text" label="Zip Code" value="{!v.simpleRecord.EmergencyContactZipCode__c}" />
+        <lightning:select name="select" label="State" required="true" value="{!v.simpleRecord.EmergencyContactState__c}">
+            <aura:iteration items="{!v.statePicklistValues}" var="state">
+                <option text="{!state}"></option>
+            </aura:iteration>
+        </lightning:select>
+        <lightning:input type="Text" label="Home Phone" value="{!v.simpleRecord.EmergencyContactHomePhone__c}" />
+        <lightning:input type="Text" label="Cell Phone" value="{!v.simpleRecord.EmergencyContactCellPhone__c}" />
+        <lightning:input type="Text" label="Work Phone" value="{!v.simpleRecord.EmergencyContactWorkPhone__c}" />
+        <lightning:input type="Text" label="Relationship to Patient" value="{!v.simpleRecord.City__c}" />
+    </lightning:card>
+    
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+        <div class="recordError">
+            {!v.recordError}</div>
+    </aura:if>
+</aura:component>
