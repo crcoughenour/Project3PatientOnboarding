@@ -1,0 +1,49 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes">
+
+    <br/><br/>
+    <img src="{!$Resource.DocsBanner}"></img><br/>
+    <p class="paragraphs">Welcome to Vigilant Heath Care!
+        We are a brand new primary care office of some of the most renowned
+        physicians, opening our doors to the DC community in January 2019.
+        We strive to put our patient’s health, comfort, concerns, and
+        happiness above all else. Our goal is to make your experience with
+        us so great, you can’t wait to come back to see us again!</p><br/><br/>
+    
+    	<p class="paragraphs">Here at Vigilant, we know your time is valuable, so we provide
+            convenient online form-completion so that you can see your
+            physician immediately after checking in for your appointment
+            when you get here!</p><br/><br/>
+    
+    <lightning:button variant="brand" 
+                      label="Complete Online New-Patient Forms!" 
+                      title="Start Documentation" 
+                      onclick="{! c.handleClick }"
+                      class="posButton"/><br/><br/>
+    
+    <p class="paragraphs">Click the link above to get started, and the form will guide you
+        through the steps of filling out your documentation.</p> 
+	<p class="paragraphs"><mark>*Remember, after you submit the completed forms, you can always call
+    	the office at <i>555-128-1992</i> to make changes.</mark></p>
+	<p class="paragraphs">For questions, click the help icon to contact our our friendly
+        office staff.</p> 
+    <p class="paragraphs">We look forward to meeting you!</p><br/><br/>
+    
+    <h2 style="text-align: center">Services</h2><br/>
+    
+    <ul class="list">
+        <li>Cough, cold and Flu Treatment</li>
+        <li>Routine Check Ups</li>
+        <li>Family Medicine / Internal Medicine</li>
+        <li>Ultrasound</li>
+        <li>On-site Blood Lab</li>
+        <li>Sports Physicals</li>
+        <li>Common Immunizations</li>
+        <li>Eye test and Prescriptions</li>
+        <li>Physical, Speech, and Occupational therapy</li>
+        <li>Office Gynecology</li>
+        <li>Pediatrician Services</li>
+        <li>Allergy Care</li>
+        <li>Nutrition Counseling</li>
+    </ul>
+    
+</aura:component>

@@ -1,0 +1,129 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes">
+    <aura:attribute name="activeSections" type="List" default="[]" />
+    <aura:attribute name="activeSectionsMessage" type="String" default="" />
+    
+    <p>{! v.activeSectionsMessage }</p>
+    
+    <lightning:accordion
+                         allowMultipleSectionsOpen="true"
+                         onsectiontoggle="{! c.handleSectionToggle }"
+                         activeSectionName="{! v.activeSections }">
+        <lightning:accordionSection name="PrepQ" label="How do I prepare for my first appointment?">
+            <p>In order to get the most out of your treatment,
+                we would suggest you make a list of important 
+                information or questions that you may want to 
+                discuss with your doctor. Below are some questions 
+                that may help you with this process:</p><br/>
+            <ol class="bullet">
+                <li>What do you hope to accomplish through treatment?</li>
+                <li>What has been happening in your life that made you decide
+                    to seek treatment at our facility?</li>
+                <li>How long has this been happening and how troubling is it?</li>
+                <li>What symptoms are you experiencing? Anxiety, sadness, confusion,
+                    sleeplessness?</li>
+                <li>What steps have you taken to try to make yourself feel better?</li>
+                <li>Have you experienced these feeling in the past? If so, did you take
+                    any steps that made you feel better?</li>
+                <li>Have you seen any other professions regarding this problem? (Another
+                    therapist, doctor, a clergy member)</li>
+                <li>Have you attended any type of support group?</li>
+            </ol>
+        </lightning:accordionSection>
+        <lightning:accordionSection name="BringQ" label="What should I bring to my first appointment?">
+            <p>Be sure to arrive at least 15 minutes early to complete necessary 
+                paperwork if you haven’t completed all the online forms.</p><br/>
+            <ol class="bullet">
+                <li>Insurance Card</li>
+                <li>Photo ID</li>
+                <li>A list of all medicines (name, dose, and frequency taken) 
+                    that you are currently taking for both physical and behavioral
+                    health reasons. Bring along contact information for all doctors
+                    who are giving you medicine. It would also be important to bring
+                    a list of any medications (both physical and behavioral) that
+                    you have allergies to or have experienced an adverse reaction to
+                    in the past. Any documents that might be pertinent to your
+                    treatment (previous psychological testing, hospital discharge
+                    summaries, recent laboratory results, etc).</li>
+                <li>If you would like us to share your evaluation or treatment plan
+                    with any other healthcare professionals (primary care physician,
+                    specialist, etc), any other professionals (attorney, clergy,
+                    etc.) or family members it will be necessary for you to
+                    complete a Release of Information.</li>
+                <li>Please be prepared by bringing a list of contact information for
+                    these individuals including address, telephone and fax numbers.</li>
+            </ol>
+        </lightning:accordionSection>
+        <lightning:accordionSection name="MostQ" label="What can I do to get the most out of my treatment?">
+            <ol class="bullet">
+                <li>It is very important to be open and honest with your
+                    doctor or therapist.</li>
+                <li>Keep your appointments.</li>
+                <li>Ask questions.</li>
+                <li>Go to appointments as often as recommended.</li>
+                <li>Appointments may be more frequent at the beginning
+                    of treatment.</li>
+                <li>Follow all treatment recommendations.</li>
+                <li>Ask your doctor for suggestions about readings and
+                    support groups.</li>
+            </ol>
+        </lightning:accordionSection>
+        <lightning:accordionSection name="ProblemQ" 
+                                    label="How do I describe my problem to my doctor? Its uncomfortable and I'm embarrassed.">
+            <p>Many people find their progress in treatment improves quickly when
+                they focus on specific issues or problems. You can start with
+                whatever is on your mind, and eventually you’ll cover the
+                important points. Doctors understand your discomfort and
+                embarrassment and know how to help put you at ease. Most people
+                get over their discomfort once they have been talking for a few
+                minutes.</p>
+        </lightning:accordionSection>
+        <lightning:accordionSection name="SecurityQ" 
+                                    label="How secure is my information?">
+            <p>All data is encrypted, and the system is password protected.</p>
+        </lightning:accordionSection>
+        <lightning:accordionSection name="PhoneQ" 
+                                    label="Can I fill out forms in my phone?">
+            <p>Yes, the forms are very responsive and mobile friendly.
+                You can fill the forms on any mobile device.</p>
+        </lightning:accordionSection>
+        <lightning:accordionSection name="ResetQ" 
+                                    label="How do I reset my password?">
+            <p>Click on the icon “Forgot My Password” underneath the login and
+                follow the onscreen prompts. If you have an account an email will
+                be sent to the given address.</p>
+        </lightning:accordionSection>
+        <lightning:accordionSection name="IncompleteQ" 
+                                    label="Can I submit an incomplete form and still see the doctor?">
+            <p>Yes, you can submit an incomplete form, but you will have to
+                complete all forms when you arrive for your appointment. An
+                Admin will guide you in completing the forms before you could
+                be seen for treatment.</p>
+        </lightning:accordionSection>
+        <lightning:accordionSection name="EmailQ" 
+                                    label="What do I do if I don't have an email address?">
+            <p>An e-mail address is required to complete the Applicant Profile
+                unless otherwise noted below the email address field. If you do
+                not have an e-mail address, there are several providers
+                available that offer free e-mail accounts including Hotmail,
+                Yahoo, and Google.</p>
+        </lightning:accordionSection>
+        <lightning:accordionSection name="InfoQ" 
+                                    label="I'm filling out the application, but don't have all the information it asks for. What do I do?">
+            <p>You can save your information by clicking on the Save button at
+                the bottom of the form. Once you have the missing information,
+                you may log back in with your user name and password to complete
+                the application.</p>
+        </lightning:accordionSection>
+        <lightning:accordionSection name="SubmitQ" 
+                                    label="How do I know if my online application went through?">
+            <p>Once you've submitted the forms, you will receive an email
+                notification thanking you for your submission.</p>
+        </lightning:accordionSection>
+        <lightning:accordionSection name="EditQ" 
+                                    label="Once I submit an application, can I edit it?">
+            <p>Once you submit the forms, it will be automatically routed to
+                different departments for review and cannot be edited. You will
+                only be able to edit the insurance verification form.</p>
+        </lightning:accordionSection>
+    </lightning:accordion>
+</aura:component>

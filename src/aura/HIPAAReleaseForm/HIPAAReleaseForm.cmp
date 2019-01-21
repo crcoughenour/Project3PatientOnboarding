@@ -1,0 +1,95 @@
+<aura:component >
+	<aura:attribute name="myRecordId" type="Id"/>
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="simpleRecord" type="Object"/>
+    <aura:attribute name="recordError" type="String"/>
+    <aura:attribute name="actualRecord" type="Form__c"/>
+    
+     <!-- for save button -->
+    <aura:attribute name="save" type="Boolean" />
+    
+    <!-- Picklist Values -->
+    <aura:attribute name="ReleaseOfInformation" type="List" default="[]"/>
+    <aura:attribute name="ReleaseTo" type="List" default="[]"/>
+    <aura:attribute name="IfUnableToReachMe" type="List" default="[]"/>
+    <aura:attribute name="PreferredMethodOfContact" type="List" default="[]"/>
+    
+    <!-- handler for save button -->
+    <aura:handler name="change" value="{!v.save}" action="{!c.handleSaveChange}"/>
+    <aura:method name="submitMethod" action="{!c.handleSubmitChange}" access="PUBLIC"/> 
+    
+    <aura:if isTrue="{!v.myRecordId == v.actualRecord.Id &amp;&amp; !(v.actualRecord.isComplete__c)}">
+        <force:recordData aura:id="recordLoader"
+                          recordId="{!v.myRecordId}"
+                          layoutType="FULL"
+                          targetRecord="{!v.record}"
+                          targetFields="{!v.simpleRecord}"
+                          targetError="{!v.recordError}"
+                          mode="EDIT"
+                          />
+    </aura:if>
+    <aura:if isTrue="{!v.myRecordId == v.actualRecord.Id &amp;&amp; (v.actualRecord.isComplete__c)}">
+        <force:recordData aura:id="recordLoader"
+                          recordId="{!v.myRecordId}"
+                          layoutType="FULL"
+                          targetRecord="{!v.record}"
+                          targetFields="{!v.simpleRecord}"
+                          targetError="{!v.recordError}"
+                          mode="VIEW"
+                          />
+     </aura:if>
+    
+    
+    <aura:if isTrue="{!v.actualRecord.isComplete__c}">
+    	<b style="color:#D80000 ;">
+            WELP. YOU CAN NOT EDIT THIS FORM anymore. CALL THE HELP INFORMATION IF YOU WANT TO CHANGE some stuffs.
+        </b>
+       	<br/>
+    </aura:if>
+    
+    <!-- make the picklist value -->
+    <c:PicklistComponent sObjectName="Form__c" field="ReleaseOfInformation__c" picklistValues="{!v.ReleaseOfInformation}" />
+    <c:PicklistComponent sObjectName="Form__c" field="ReleaseTo__c" picklistValues="{!v.ReleaseTo}" />
+    <c:PicklistComponent sObjectName="Form__c" field="PreferredMethodOfContact__c" picklistValues="{!v.PreferredMethodOfContact}" />
+    <c:PicklistComponent sObjectName="Form__c" field="IfUnableToReachMe__c" picklistValues="{!v.IfUnableToReachMe}" />
+    
+    
+    
+    
+    <lightning:card iconName="standard:lead_list" title="HIPAA Release Form" >
+    	<lightning:input type="Text" label="First Name:" value="{!v.simpleRecord.FirstName__c}" />
+    	<lightning:input type="Text" label="Last Name:" value="{!v.simpleRecord.LastName__c}" />
+        <lightning:input type="Text" label="Date of Birth:" value="{!v.simpleRecord.DateOfBirth__c}"/>
+                
+        <lightning:select name="select" label="Release of Information Authorization" required="true" value="{!v.simpleRecord.ReleaseOfInformation__c}">
+            <aura:iteration items="{!v.ReleaseOfInformation}" var="release">
+                <option text="{!release}"></option>
+            </aura:iteration>
+        </lightning:select>
+    	<lightning:select name="select" label="Release Information To:" required="false" value="{!v.simpleRecord.ReleaseTo__c}">
+            <aura:iteration items="{!v.ReleaseTo}" var="rel">
+                <option text="{!rel}"></option>
+            </aura:iteration>
+        </lightning:select>
+        
+        <lightning:input type="Text" label="Enter the name of informee:" value="{!v.simpleRecord.ReleaseOfInfoEntry__c}" />
+
+        <lightning:select name="select" label="Preferred Method of Contact:" value="{!v.simpleRecord.PreferredMethodOfContact__c}">
+            <aura:iteration items="{!v.PreferredMethodOfContact}" var="conMeth">
+                <option text="{!conMeth}"></option>
+            </aura:iteration>
+        </lightning:select>
+        <lightning:select name="select" label="If unable to reach me:" value="{!v.simpleRecord.IfUnableToReachMe__c}">
+            <aura:iteration items="{!v.IfUnableToReachMe}" var="reachMe">
+                <option text="{!reachMe}"></option>
+            </aura:iteration>
+        </lightning:select>
+    	<lightning:input type="Text" label="Patient Signature Name" value="{!v.simpleRecord.PatientSignatureName__c}" />
+    	<lightning:input type="Date" label="Patient Signature Date" value="{!v.simpleRecord.DatePS__c}" />
+    </lightning:card>
+    
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+        <div class="recordError">
+            {!v.recordError}</div>
+    </aura:if>
+</aura:component>

@@ -1,0 +1,64 @@
+<aura:component implements="force:appHostable,forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes" access="global" controller="DocumentsContainerApexController">
+    <!-- Attributes init -->
+    <aura:attribute name="currentFormId" type="Id"/>
+    <aura:attribute name="contactId" type="Id" />
+    <aura:attribute name="contactId2" type="Id" />
+    <aura:attribute name="forms" type="Form__c[]"/>
+    <aura:attribute name="contact" type="Contact"/>
+    
+    <!-- Attributes for each Form__c objects -->
+    <aura:attribute name="newPatientRegistrationForm" type="Form__c" /> 
+    <aura:attribute name="medicalHistoryForm" type="Form__c" />
+    <aura:attribute name="consentForTreatmentForm" type="Form__c" />
+    <aura:attribute name="consentForTreatmentFormId" type="ID"/>
+    <aura:attribute name="hipaaCompliancePatientConsentForm" type="Form__c" />
+    <aura:attribute name="HIPPAReleaseForm" type="Form__c" />
+    
+    <!-- helper and data service to get the hipaa stuff -->
+    <aura:attribute name="hipaa" type="Boolean" default="False"/>
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="simpleRecord" type="Object"/>
+    <aura:attribute name="recordError" type="String"/>
+    
+    <!-- Handlers -->
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <aura:handler name="formClick" event="c:FormClick" action="{!c.handleFormClick}"/>
+    
+  	<aura:if isTrue="{!v.newPatientRegistrationForm.isComplete__c &amp;&amp; v.consentForTreatmentForm.isComplete__c &amp;&amp; v.hipaaCompliancePatientConsentForm.isComplete__c &amp;&amp; v.medicalHistoryForm.isComplete__c &amp;&amp; v.hipaaReleaseForm.isComplete__c}">
+        <c:Congratulations/>
+    </aura:if>
+    
+    <!-- Debug
+    contactId = {! v.contact.Id} <br/>
+    simpleRecord.Hipaa = {! v.contact.HIPAA__c}
+    -->
+    
+    <!-- Hippa stuff -->
+    <aura:if isTrue="{! v.contact.HIPAA__c == false}">
+        <br/><br/><br/>
+        <c:HipaaCheckbox />
+        <div class="slds-align_absolute-center" style="height: 5rem; ">
+            <lightning:input type="checkbox" label="I agree" value="{!v.hipaa}" onchange="{!c.changeHipaaAttribute}"/>
+            <br/>
+            <lightning:button label="Yes, I agree bro. Get me outta here." title="Neutral action" onclick="{! c.hipaaChange }"/>
+        </div>
+    	
+    </aura:if>   
+    
+    
+    <!-- Forms stuff -->
+    <aura:if isTrue="{! v.contact.HIPAA__c }">               
+        <!-- Div to split sections -->
+        <div class="slds-grid slds-gutters">
+            <!-- The list on the left -->
+            <div class="slds-col slds-size_3-of-12 sticky fixed-box">
+                <c:FormList contactId="{!v.contactId}" forms="{!v.forms}"/>
+            </div>
+            <!-- The actual form on the right -->
+            <div class="slds-col slds-size_7-of-12" style="margin-left: 30%">
+                <!-- Main Form Element Goes Here -->
+                <c:showForm contactId="{!v.contactId}" formId="{!v.currentFormId}" formList="{!v.forms}" newPatientRegistrationForm="{!v.newPatientRegistrationForm}" medicalHistoryForm="{!v.medicalHistoryForm}" consentForTreatmentForm="{!v.consentForTreatmentForm}" consentForTreatmentFormId="{!v.consentForTreatmentFormId}" hipaaCompliancePatientConsentForm="{!v.hipaaCompliancePatientConsentForm}" hipaaReleaseForm="{!v.hipaaReleaseForm}"/>
+            </div>
+        </div>
+	</aura:if>
+</aura:component>

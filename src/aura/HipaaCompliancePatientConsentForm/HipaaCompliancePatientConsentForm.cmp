@@ -1,0 +1,80 @@
+<aura:component >
+	<aura:attribute name="myRecordId" type="Id"/>
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="simpleRecord" type="Object"/>
+    <aura:attribute name="recordError" type="String"/>
+    <aura:attribute name="actualRecord" type="Form__c"/>
+    
+     <!-- for save button -->
+    <aura:attribute name="save" type="Boolean" />
+    
+    <!-- Picklist Values -->
+    <aura:attribute name="hipaaConsent1" type="List" default="[]"/>
+    <aura:attribute name="hipaaConsent2" type="List" default="[]"/>
+    <aura:attribute name="hipaaConsent3" type="List" default="[]"/>
+    
+    <!-- handler for save button -->
+    <aura:handler name="change" value="{!v.save}" action="{!c.handleSaveChange}"/>
+    <aura:method name="submitMethod" action="{!c.handleSubmitChange}" access="PUBLIC"/> 
+    
+    <aura:if isTrue="{!v.myRecordId == v.actualRecord.Id &amp;&amp; !(v.actualRecord.isComplete__c)}">
+        <force:recordData aura:id="recordLoader"
+                          recordId="{!v.myRecordId}"
+                          layoutType="FULL"
+                          targetRecord="{!v.record}"
+                          targetFields="{!v.simpleRecord}"
+                          targetError="{!v.recordError}"
+                          mode="EDIT"
+                          />
+    </aura:if>
+    <aura:if isTrue="{!v.myRecordId == v.actualRecord.Id &amp;&amp; (v.actualRecord.isComplete__c)}">
+        <force:recordData aura:id="recordLoader"
+                          recordId="{!v.myRecordId}"
+                          layoutType="FULL"
+                          targetRecord="{!v.record}"
+                          targetFields="{!v.simpleRecord}"
+                          targetError="{!v.recordError}"
+                          mode="VIEW"
+                          />
+     </aura:if>
+    
+    
+    <aura:if isTrue="{!v.actualRecord.isComplete__c}">
+        <b style="color:#D80000 ;">
+            WELP. YOU CAN NOT EDIT THIS FORM anymore. CALL THE HELP INFORMATION IF YOU WANT TO CHANGE some stuffs.
+        </b>
+       	<br/>
+    </aura:if>
+    
+    <!-- make the picklist value -->
+    <c:PicklistComponent sObjectName="Form__c" field="HIPAAConsent1__c" picklistValues="{!v.hipaaConsent1}" />
+    <c:PicklistComponent sObjectName="Form__c" field="HIPAAConsent2__c" picklistValues="{!v.hipaaConsent2}" />
+    <c:PicklistComponent sObjectName="Form__c" field="HIPAAConsent3__c" picklistValues="{!v.hipaaConsent3}" />
+    
+    <lightning:card iconName="standard:lead_list" title="Consent HIPAA" >
+        <lightning:select name="select" label="consent1" required="true" value="{!v.simpleRecord.HIPAAConsent1__c}">
+            <aura:iteration items="{!v.hipaaConsent1}" var="consent">
+                <option text="{!consent}"></option>
+            </aura:iteration>
+        </lightning:select>
+    	<lightning:select name="select" label="consent2" required="true" value="{!v.simpleRecord.HIPAAConsent2__c}">
+            <aura:iteration items="{!v.hipaaConsent2}" var="consent">
+                <option text="{!consent}"></option>
+            </aura:iteration>
+        </lightning:select>
+        <lightning:select name="select" label="consent3" value="{!v.simpleRecord.HIPAAConsent3__c}">
+            <aura:iteration items="{!v.hipaaConsent3}" var="consent">
+                <option text="{!consent}"></option>
+            </aura:iteration>
+        </lightning:select>
+    	<lightning:textarea label="Consent 3 Description" value="{!v.simpleRecord.HIPAAConsent3Description__c}" />
+    	<lightning:input type="Text" label="Patient Signature Name" value="{!v.simpleRecord.PatientSignatureName__c}" />
+    	<lightning:input type="Date" label="Patient Signature Date" value="{!v.simpleRecord.DatePS__c}" />
+    	<lightning:input type="Date" label="Witness Signature Date" value="{!v.simpleRecord.DateWS__c}" />
+    </lightning:card>
+    
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+        <div class="recordError">
+            {!v.recordError}</div>
+    </aura:if>
+</aura:component>

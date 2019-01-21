@@ -1,0 +1,79 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes">
+    <br/>
+    <div class="header">Doctor Bios</div>
+    
+    
+    <br/><div>
+        <img src="{!$Resource.DocMelikian}"/>
+        <p>Dr. Melikian started Vigilant Health Care
+            in 2018 after working in family medicine
+            at George University Hospital for the past
+            twenty years, where he met Dr. Joyce Alberts
+            with a shared vision of a patient-focused, yet
+            highly efficient practice that can provide the
+            most relevant services that his community needs.
+            He is excited to start this journey with his true
+            family: his patients. He received his degree from
+            the Medical College of Ohio, after which he was
+            named one of the top doctors in a the US for several
+            years running. 
+        </p>
+    <br/><br/></div>
+    
+    <div>
+        <img src="{!$Resource.DocAlberts}"/>
+        <p>Dr. Joyce Alberts was born and raised in Phoenix, Arizona, and
+            moved to the DC area after graduating from the University
+            of Arizona Medical school in 1995. Specializing in
+            pediatric medicine, Dr. Alberts has made a name for herself
+            after practicing medicine at George Washington University
+            Hospital for the past decade. She spends her time with her
+            partner and four beautiful children, and can often be found
+            spending her time either reading fantasy novels to them or
+            supporting them in ballet and sports.
+ 
+        </p>
+        <br/><br/></div>
+	
+    <div>
+        <img src="{!$Resource.DocWeatherland}"/>
+        <p>Dr. Peter Weatherland came all the way from London after
+            studying internal medicine at UCL Medicine and graduating
+            top of his class in 2005 . Dr. Weatherland followed his
+            wife, Mary, who came to the states to study neuroscience
+            where she is completing her masters thesis. Dr. Weatherland
+            enjoys baking pies and cakes, as well as raising their first
+            daughter, Melissa, who was born last year. He strives to treat
+            this practice as if it were his own family.
+        </p>
+    </div><br/><br/>
+    
+    <div class="header">Patient Testimonials</div><br/><br/>
+    
+    <div class="testimonials">
+    	<p>“You saved my trip to San Francisco the other week! I felt an
+            ear infection setting in during my flight from London. Your
+            online onboarding process was easy and efficient plus the
+            courtesy in treating me helped me make the most of a major
+            conference for my industry.”</p>
+        <p><b>-Jennifer M.</b></p><br/>
+        
+        <p>“I was beyond impressed with my experience at this doctor’s
+            office when I had requested help with the portal. My first
+            contact was with Geoffrey and I was completely blown away
+            by how helpful and kind he was and how fast he was at
+            getting back to me! A lot of doctors don’t realize how
+            important it is to have administration like Geoffrey.
+            The first point of contact is crucial!”</p>
+        <p><b>-Jane Doe</b></p><br/>
+        
+        <p>"After being onboarded to Vigilant, I thought, this is
+            going to be life changing. I found a practice that
+            understands me. They're  going to help me. Someone is
+            finally giving me the resources that I need."</p>
+        <p><b>-Marcus Fletcher</b></p>
+    
+    </div>
+
+    
+</aura:component>

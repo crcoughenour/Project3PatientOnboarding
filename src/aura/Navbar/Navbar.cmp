@@ -1,0 +1,16 @@
+<!--developed by: Tim Mag-->
+
+<aura:component implements="forceCommunity:availableForAllPageTypes">
+    
+    <div class="slds-context-bar">
+        <a onclick="{!c.goToHome}">Home</a>
+        <a onclick="{!c.goToAboutUs}">About Us</a>
+        <a onclick="{!c.goToDocumentations}">Documentation</a>
+        <a onclick="{!c.goToFAQ}">FAQ</a>
+        <a onclick="{!c.goToProfile}">Profile</a>
+        <a>
+            <c:HelpModal aura:id="helpModal"/>
+        </a>
+    </div>
+    
+</aura:component>

@@ -1,0 +1,19 @@
+<aura:component controller="MsPicklistComponentApexController" access="global">
+    <aura:attribute name="sObjectName" type="String" />
+    <aura:attribute name="field" type="String" />
+    <aura:attribute name="msPicklistOptions" type="List" default="[]"/>
+    <aura:attribute name="msSelectedOptions" type="String" default=""/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <lightning:dualListbox name="Conditions"  
+                           label= "Select Conditions" 
+                           sourceLabel="Available" 
+                           selectedLabel="Selected" 
+                           fieldLevelHelp="Select the conditions that apply" 
+                           options="{!v.msPicklistOptions}"
+                           values="{!v.msSelectedOptions}"
+                           onchange="{!c.handleChange}"
+                           />
+    
+</aura:component>

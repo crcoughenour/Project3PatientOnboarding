@@ -1,0 +1,15 @@
+<aura:component >
+    
+            <div class="slds-align_absolute-center" style="text-align: center; width: 25rem;">
+                <div class=".slds-border_bottom .slds-border_top .slds-border_left .slds-border_right" style="font-size:15px;border: 5px solid green;
+	padding: 10px 5px;
+	margin: 5px; ">
+                    <b style="font-size:20px">Congratulations.</b> 
+                    <br/>
+                    All your forms have been submitted.
+                    <br/>
+                    Go wait for your appointment at the corner.
+                </div>
+            </div>
+        
+</aura:component>

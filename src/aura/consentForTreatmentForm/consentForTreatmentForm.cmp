@@ -1,0 +1,70 @@
+<aura:component >
+    <aura:attribute name="actualRecord" type="Form__c"/>
+	<aura:attribute name="recordId" type="Id"/>
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="simpleRecord" type="Object"/>
+    <aura:attribute name="recordError" type="String"/>
+    
+    <!-- for save button -->
+    <aura:attribute name="save" type="Boolean" />
+    
+	
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!v.recordId}" action="{!c.handleRecordIdChange}"/>
+    
+    <!-- handler for save button -->
+    <aura:handler name="change" value="{!v.save}" action="{!c.handleSaveChange}"/>
+    <aura:method name="submitMethod" action="{!c.handleSubmitChange}" access="PUBLIC"/> 
+        
+    
+    <aura:if isTrue="{!((v.recordId == v.actualRecord.Id) &amp;&amp; !(v.actualRecord.isComplete__c))}">
+        <force:recordData aura:id="forceRecordCmp"
+                          recordId="{!v.recordId}"
+                          layoutType="FULL"
+                          mode="EDIT"
+                          targetRecord="{!v.record}"
+                          targetFields="{!v.simpleRecord}"
+                          targetError="{!v.recordError}" />
+    </aura:if>
+   	
+    <aura:if isTrue="{!(v.recordId == v.actualRecord.Id) &amp;&amp; v.actualRecord.isComplete__c}">
+        <force:recordData aura:id="forceRecordCmp"
+                          recordId="{!v.recordId}"
+                          layoutType="FULL"
+                          mode="VIEW"
+                          targetRecord="{!v.record}"
+                          targetFields="{!v.simpleRecord}"
+                          targetError="{!v.recordError}" />
+    </aura:if>
+    
+    <aura:if isTrue="{!v.actualRecord.isComplete__c}">
+    	<b style="color:#D80000 ;">
+            WELP. YOU CAN NOT EDIT THIS FORM anymore. CALL THE HELP INFORMATION IF YOU WANT TO CHANGE some stuffs.
+        </b>
+       	<br/>
+    </aura:if>
+
+    <lightning:card iconName="standard:lead_list" title="Consent for Treatment Form" >
+        
+        <lightning:input label="Witness Job Title" value="{!v.simpleRecord.WitnessJobTitle__c}" />
+        <lightning:input label="Relationship to Parent" value="{!v.simpleRecord.RelationshipToPatient__c}" />
+        
+        <c:SignDocument/>
+        
+        <lightning:input label="Patient Signature Name" value="{!v.simpleRecord.PatientSignatureName__c}" />
+        <lightning:input label="Patient Signature NDate" value="{!v.simpleRecord.DatePS__c}" />
+        
+        <lightning:input label="Witness Signature Name" value="{!v.simpleRecord.WitnessSignatureName__c}" />
+        <lightning:input label="Witness Signature Date" value="{!v.simpleRecord.DateWS__c}" />
+    </lightning:card>
+    		
+	
+	
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+        <div class="recordError">
+            {!v.recordError}</div>
+    </aura:if>
+
+    
+</aura:component>

@@ -1,0 +1,85 @@
+<aura:component >
+    <div class="slds-align_absolute-center" style="height: 25rem; ">
+        <div class="slds-scrollable_y" style="height: 25rem; width: 40rem; background: white; border: 5px solid #87cefa ;
+	padding: 25px 10px;
+	margin: 25px;">
+            <p>Vitality HealthCare offers secure viewing and communication as a service
+                to patients who wish to enter, update, store and view parts of their records and communicate with our staff and physicians. Automated onboarding can be a valuable  tool, but has certain risks. In order to manage these risks we need to impose some conditions of participation. This form is intended to show that you have been informed of these risks and the conditions of participation, and that you accept the risks and agree to the conditions of participation.
+            </p>
+            <br/><br/>
+            <p>
+                <b style="font-size: 20px">
+                    USES AND DISCLOSURES OF HEALTH INFORMATION
+                </b>
+            </p>
+            <br/>
+            <p>
+                We use and disclose health information about you for treatment, payment, and healthcare operations. For example:   
+            </p>	
+            <br/>
+            <p>
+                <b style="font-size: 14px">Treatment:</b> We may use or disclose your health information to a physician or other healthcare provider providing treatment to you, or to family and friends you approve.  
+            </p> 
+            <br/>
+            <p>
+                <b style="font-size: 14px">Payment:</b> We may use and disclose your health information to obtain payment for services we provide to you.   
+            </p>
+            <br/>
+            <p>
+                <b style="font-size: 14px">Healthcare Operations:</b> We may use and disclose your health information in connection with our healthcare operations. Healthcare operations include quality assessment and improvement activities, reviewing the competence or qualifications of healthcare professionals, evaluating practitioner and provider performance, conducting training programs, accreditation, certification, licensing or credentialing activities.   
+            </p>
+            <br/>
+            <p>
+                <b style="font-size: 14px">Your Authorization:</b> In addition to our use of your health information for treatment, payment or healthcare operations, you may give us written authorization to use your health information or to disclose it to anyone for any purpose. You also have the right to request restrictions on disclosure of PHI (Personal Health Information),or alternative means of communication to ensure privacy.    
+            </p>
+            <br/>
+            <p>
+                <b style="font-size: 14px">Marketing Health-Related Services:</b> We will not use your health information for marketing communications without your written authorization.       
+            </p>  
+            <br/>
+            <p>
+                <b style="font-size: 14px">Required by Law:</b> We may use or disclose your health information when we are required to do so by law or national security activities.
+            </p> 
+            <br/>
+            <p>
+                <b style="font-size: 14px">Abuse or Neglect:</b> We may disclose your health information to appropriate authorities when we suspect abuse or neglect.  
+            </p> 
+            <br/><br/>
+            <p>
+                <b style="font-size: 20px">
+                    PATIENT RIGHTS
+                </b>
+            </p> 
+            <br/>
+            <p>
+                <b style="font-size: 14px">Access:</b> You have the right to look at or get copies of your health information with limited exceptions. If you request copies,we will charge you a reasonable fee to locate and copy your information, and postage if you want the copies mailed to you. 
+            </p>
+            <p>
+                <b style="font-size: 14px">Amendment:</b> You have the right to request that we amend your health information. 
+            </p>
+            <br/><br/>
+            <p>
+                <b style="font-size: 20px">
+                    QUESTIONS AND COMPLAINTS
+                </b>
+                <br/><br/>
+                If you want more information about our privacy practices or have q
+                uestions or concerns, please contact us.
+                <br/><br/>
+                If you are concerned that we may have violated your privacy rights, or you disagree with a decision we made about access to your health information or in response to a request you made to amend or restrict the use or disclosure of your health information or to have us communicate with you by alternative means or at alternative locations, you may complain to us using the contact information listed at the end of this Notice. You also may submit a written complaint to the U.S. Department of Health and Human Services. We will provide you with the address to file your complaint with the U.S. Department of Health and Human Services upon request.
+                <br/><br/>
+                We support your right to the privacy of your health information.We will not retaliate in any way if you choose to file a complaint with us with the U.S. Department of Health and Human Services. A Privacy/Contact Officer has been designated for this office. The Privacy Officer can be contacted by simply contacting the office and asking to speak to the Office Manager who serves as the Privacy Officer.
+            </p>
+            <br/><br/><br/>
+            <p> 
+                I acknowledge that I have read and fully understand the Patient Portal User Agreement and Consent. I have read and understand the responsibilities and benefits of the Patient Portal and understand the risks associated with online communications between me and my physician’s office. I consent to the conditions outlined and I agree to keep my password confidential and notify the office if my email address changes at any time. I have had a chance to ask any questions that I had and to receive answers. I have been proactive about asking questions related to this Agreement. All of my questions have been answered and I understand and concur with the information.
+            </p>
+            <div class="slds-text-longform" style="width: 150%;">
+                <p>Sit nulla est ex deserunt exercitation anim occaecat. Nostrud ullamco deserunt aute id consequat veniam incididunt duis in sint irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit officia tempor esse quis.</p>
+                <p>Sit nulla est ex deserunt exercitation anim occaecat. Nostrud ullamco deserunt aute id consequat veniam incididunt duis in sint irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit officia tempor esse quis.</p>
+                <p>Sit nulla est ex deserunt exercitation anim occaecat. Nostrud ullamco deserunt aute id consequat veniam incididunt duis in sint irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit officia tempor esse quis.</p>
+            </div>
+        </div>
+        
+    </div>
+</aura:component>
